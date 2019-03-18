@@ -48,25 +48,31 @@ The REST end points of the application are exposed through Swagger UI for Client
  
 ## Screenshots
 
-```
+
 Swagger screenshots
 1. Request for shortening of URL - 
-2. Find statistics of a URL by unique key - https://github.com/ritika1993/Neueda/blob/master/Swagger/Output_ScreenShots/display-stats-swagger.png
-
-3.Find statistics of all URLs - https://github.com/ritika1993/Neueda/blob/master/Swagger/Output_ScreenShots/display-all-swagger.png
-
-4. Delete a URL by original URL link - https://github.com/ritika1993/Neueda/blob/master/Swagger/Output_ScreenShots/delete-by-url-swagger.png
-
-5. Delete all URLs - https://github.com/ritika1993/Neueda/blob/master/Swagger/Output_ScreenShots/delete-all-urls-swagger.png
-
-
-```
 ![alt text](https://github.com/ritika1993/Neueda/blob/master/Swagger/Output_ScreenShots/shorten-request-swagger.png)
-```
+
+2. Find statistics of a URL by unique key -
+![alt text](https://github.com/ritika1993/Neueda/blob/master/Swagger/Output_ScreenShots/display-stats-swagger.png)
+
+3.Find statistics of all URLs -
+![alt text](https://github.com/ritika1993/Neueda/blob/master/Swagger/Output_ScreenShots/Output_ScreenShots/display-all-swagger.png)
+
+4. Delete a URL by original URL link -
+![alt text](https://github.com/ritika1993/Neueda/blob/master/Swagger/Output_ScreenShots/delete-by-url-swagger.png)
+
+5. Delete all URLs - 
+![alt text](https://github.com/ritika1993/Neueda/blob/master/Swagger/Output_ScreenShots/delete-all-urls-swagger.png)
+
+
+
+
+
 Postman Screenshots
 
 1. Redirect to original URL -
-```
+
 
 Include logo/demo screenshot etc.
 
