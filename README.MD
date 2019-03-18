@@ -72,7 +72,6 @@ Swagger screenshots
 
 
 Postman Screenshots
-
 1. Redirect to original URL -
 
 
