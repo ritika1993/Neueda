@@ -57,7 +57,7 @@ Swagger screenshots
 ![alt text](https://github.com/ritika1993/Neueda/blob/master/Swagger/Output_ScreenShots/display-stats-swagger.png)
 
 3.Find statistics of all URLs -
-![alt text](https://github.com/ritika1993/Neueda/blob/master/Swagger/Output_ScreenShots/Output_ScreenShots/display-all-swagger.png)
+![alt text](https://github.com/ritika1993/Neueda/blob/master/Swagger/Output_ScreenShots/display-all-swagger.png)
 
 4. Delete a URL by original URL link -
 ![alt text](https://github.com/ritika1993/Neueda/blob/master/Swagger/Output_ScreenShots/delete-by-url-swagger.png)
