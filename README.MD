@@ -26,7 +26,7 @@ To setup Redis database download the zip file from this link (http://download.re
 ## Project Structure
 ```
 This is a REST-API application for URL Shortening which provides following functionalities:
-1. Original URL are shortened 
+1. Original URL are shortened with a unique key generated using Base 62 characters (A-Z, a-z, 0-9)
 ```
  
 ## Screenshots
@@ -34,6 +34,7 @@ This is a REST-API application for URL Shortening which provides following funct
 ```
 Actuator screen shots
 ```
+
 ```
 Swagger screenshots
 1. Shorten a URL request
