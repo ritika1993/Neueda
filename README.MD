@@ -26,23 +26,45 @@ To setup Redis database download the zip file from this link (http://download.re
 ## Project Structure
 ```
 This is a REST-API application for URL Shortening which provides following functionalities:
-1. Original URL are shortened with a unique key generated using Base 62 characters (A-Z, a-z, 0-9)
+1. Original URL are shortened with a unique key generated using Base 62 characters (A-Z, a-z, 0-9) and their respective statistics
+   are saved in the Redis Hash (In-Memory Database)
+   Note : In this app, URL will be validated for HTTP/HTTPS request and response in 2XX. Any response other than 2XX will be prevented
+   from shortening
+   An "ID" key is used for incrementing the id (starting from 100 in this application) to ensure unique key creation for URL shortening
+   If a URL is already shortened and exists in the database, the existing short URL will be returned as response else
+   a the incoming URL will be shortened and persisted in the database
+2. Shortened URLs can be redirected to their respective original URLs
+   URLs are shortened on the local domain e.g. http://localhost:8086/url/{key}
+3. Statistics such as No of Requests for shortening, No of Redirects to original URL and Last Access Time can be fetched
+   for all URLs and for specific shortened URL
+   No of Requests will be 1 and No of Redirects will be 0 initially
+   Everytime a URL is provided for shortening or redirecting, last time accessed will change to that time stamp.
+4. URL statistics can be deleted for a original URL or all URLs which are shortened and saved in the database
+   Note: Deletion depends on the requirement of exposure to be given to clients. 
+5. Responses are binded with HyperLinks to other relevant rest end points using SPRING HATEAOS implementation
+The REST end points of the application are exposed through Swagger UI for Clients
+
 ```
  
 ## Screenshots
 
 ```
-Actuator screen shots
-```
-
-```
 Swagger screenshots
-1. Shorten a URL request
+1. Request for shortening of URL - https://github.com/ritika1993/Neueda/blob/master/Swagger/Output_ScreenShots/shorten-request-swagger.png
+2. Find statistics of a URL by unique key - https://github.com/ritika1993/Neueda/blob/master/Swagger/Output_ScreenShots/display-stats-swagger.png
+
+3.Find statistics of all URLs - https://github.com/ritika1993/Neueda/blob/master/Swagger/Output_ScreenShots/display-all-swagger.png
+
+4. Delete a URL by original URL link - https://github.com/ritika1993/Neueda/blob/master/Swagger/Output_ScreenShots/delete-by-url-swagger.png
+
+5. Delete all URLs - https://github.com/ritika1993/Neueda/blob/master/Swagger/Output_ScreenShots/delete-all-urls-swagger.png
 
 
 ```
 ```
 Postman Screenshots
+
+1. Redirect to original URL -
 ```
 
 Include logo/demo screenshot etc.
