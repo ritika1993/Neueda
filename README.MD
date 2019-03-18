@@ -50,7 +50,7 @@ The REST end points of the application are exposed through Swagger UI for Client
 
 ```
 Swagger screenshots
-1. Request for shortening of URL - https://github.com/ritika1993/Neueda/blob/master/Swagger/Output_ScreenShots/shorten-request-swagger.png
+1. Request for shortening of URL - ![alt text](https://github.com/ritika1993/Neueda/blob/master/Swagger/Output_ScreenShots/shorten-request-swagger.png)
 2. Find statistics of a URL by unique key - https://github.com/ritika1993/Neueda/blob/master/Swagger/Output_ScreenShots/display-stats-swagger.png
 
 3.Find statistics of all URLs - https://github.com/ritika1993/Neueda/blob/master/Swagger/Output_ScreenShots/display-all-swagger.png
