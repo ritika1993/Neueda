@@ -34,7 +34,7 @@ This is a REST-API application for URL Shortening which provides following funct
    If a URL is already shortened and exists in the database, the existing short URL will be returned as response else
    a the incoming URL will be shortened and persisted in the database
 2. Shortened URLs can be redirected to their respective original URLs
-   URLs are shortened on the local domain e.g. http://localhost:8086/url/{key}
+   URLs are shortened on the local domain e.g. http://<your domain>/url/{key}
 3. Statistics such as No of Requests for shortening, No of Redirects to original URL and Last Access Time can be fetched
    for all URLs and for specific shortened URL
    No of Requests will be 1 and No of Redirects will be 0 initially
@@ -45,7 +45,9 @@ This is a REST-API application for URL Shortening which provides following funct
 The REST end points of the application are exposed through Swagger UI for Clients
 
 ```
- 
+```
+Link to Swagger UI - (http://<your domain>/swagger-ui.html#/)
+```
 ## Screenshots
 
 
