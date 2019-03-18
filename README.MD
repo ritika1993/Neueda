@@ -25,8 +25,8 @@ To setup Redis database download the zip file from this link (http://download.re
  
 ## Project Structure
 ```
-all the packages and intention behind the architecture.
-And brief explanation for selecting above technology stack
+This is a REST-API application for URL Shortening which provides following functionalities:
+1. Original URL are shortened 
 ```
  
 ## Screenshots
@@ -36,6 +36,9 @@ Actuator screen shots
 ```
 ```
 Swagger screenshots
+1. Shorten a URL request
+
+
 ```
 ```
 Postman Screenshots
