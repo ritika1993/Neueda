@@ -78,13 +78,7 @@ Postman Screenshots
 Include logo/demo screenshot etc.
 
 ## API Features
- ```
- Shorten URL and Persists it
- Fetch Statistic of shorten URL by Id
- Fetch all saved URL statistics
- Delete Shorten URL by Id
- Delet all saved shorten URL
- ```
+
  #API end points URLs (Swagger)
 ![alt text](https://github.com/ritika1993/Neueda/blob/master/swagger-rest-urls.png)
 
