@@ -63,7 +63,8 @@ public class ShortenURLServiceImpl implements ShortenURLService {
 	}
 
 	/***
-	 * This method updates the  URL already existing for a shortening request
+	 * This method updates the URL already existing for a shortening request, increments the no of requests by 1
+	 * and last access time by current time
 	 * @param Original URL
 	 * @return URLStatistics
 	 * 
@@ -72,7 +73,6 @@ public class ShortenURLServiceImpl implements ShortenURLService {
 	public Optional<URLStatistics> updateShortenURLWhenExists(String origURL) {
 
 		try {
-
 			Optional<URLStatistics> urlStat = findByOrigURL(origURL);
 			if (urlStat.isPresent()) {
 				Long requests = urlStat.get().getNoOfRequests();
@@ -83,16 +83,14 @@ public class ShortenURLServiceImpl implements ShortenURLService {
 			}
 			return urlStat;
 		} catch (Exception e) {
-
 			LOGGER.error(e.toString());
 			return null;
-
 		}
-
 	}
 
 	/***
-	 * This method creates a new shortened URL for the request
+	 * This method creates a new shortened URL for the request, sets no of requests = 1 and no of redirects =0
+	 * and last access time as current time
 	 * @param shortened URL
 	 * @param Original URL
 	 * @return URLStatistics
@@ -106,17 +104,14 @@ public class ShortenURLServiceImpl implements ShortenURLService {
 			urlStatistics.setNoOfRequests(1);
 			urlRedisRepository.save(urlStatistics);
 			return Optional.of(urlStatistics);
-
 		} catch (Exception e) {
-
 			LOGGER.error(e.toString());
 			return null;
-
 		}
-
 	}
 	/***
-	 * This method updates the provided URLStatistics for a redirect request
+	 * This method updates the provided URLStatistics for a redirect request, increments no of redirects by 1
+	 * and replace last access time by current time
 	 * @param URLStatistics
 	 * @return URLStatistics
 	 */
@@ -124,7 +119,6 @@ public class ShortenURLServiceImpl implements ShortenURLService {
 	public URLStatistics changeURLStatisticsForRedirect(URLStatistics urlStat) {
 		LOGGER.info("Inside changeURLStatisticsForRedirect method for {} : " + urlStat);
 		if (urlStat != null) {
-
 			Long redirects = urlStat.getNoOfRedirects();
 			urlStat.setNoOfRedirects(redirects += 1);
 			urlStat.setLastAccessed(LocalDateTime.now());
@@ -140,7 +134,6 @@ public class ShortenURLServiceImpl implements ShortenURLService {
 	 */
 	@Override
 	public int deleteStatisticsByURL(String longURL) {
-
 		if (urlRedisRepository.findById(longURL).isPresent()) {
 			urlRedisRepository.deleteById(longURL);
 			return 0;
@@ -154,7 +147,6 @@ public class ShortenURLServiceImpl implements ShortenURLService {
 	 */
 	@Override
 	public int deleteAllURLStatistics() {
-
 		if (urlRedisRepository.findAll().iterator().hasNext()) {
 			urlRedisRepository.deleteAll();
 			return 0;
@@ -168,9 +160,7 @@ public class ShortenURLServiceImpl implements ShortenURLService {
 	 */
 	@Override
 	public void saveStatistics(URLStatistics urlStat) {
-
 		urlRedisRepository.save(urlStat);
-
 	}
 	/***
 	 * This method returns a list of URLStatistics of all URLs
@@ -178,7 +168,6 @@ public class ShortenURLServiceImpl implements ShortenURLService {
 	 */
 	@Override
 	public List<URLStatistics> getAllURLStatistics() {
-
 		LOGGER.info("Inside getAllURLStatistics method");
 		List<URLStatistics> listOfURLs = new ArrayList<>();
 		urlRedisRepository.findAll().forEach(listOfURLs::add);
@@ -192,11 +181,9 @@ public class ShortenURLServiceImpl implements ShortenURLService {
 	 */
 	@Override
 	public URLStatistics findByShortURL(String shortURL) {
-
 		List<URLStatistics> urlStatList = getAllURLStatistics();
 		LOGGER.info("Statistics {} ", urlStatList);
 		if (urlStatList.size() != 0) {
-
 			URLStatistics urlStat = urlStatList.stream().filter(x -> x.getUrl().equals(shortURL)).findAny()
 					.orElse(null);
 			LOGGER.info("Returning URLStatistics by short URL {} ", urlStat);
@@ -205,7 +192,6 @@ public class ShortenURLServiceImpl implements ShortenURLService {
 			LOGGER.error("No URL exists ");
 			return null;
 		}
-
 	}
 	/***
 	 * This method returns URLStatistics for a original url
@@ -214,7 +200,6 @@ public class ShortenURLServiceImpl implements ShortenURLService {
 	 */
 	@Override
 	public Optional<URLStatistics> findByOrigURL(String origURL) {
-
 		return urlRedisRepository.findById(origURL);
 	}
 }
