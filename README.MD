@@ -80,13 +80,17 @@ Include logo/demo screenshot etc.
 ## API Features
  ```
  Shorten URL and Persists it
- Recover orignal URl from short URL
  Fetch Statistic of shorten URL by Id
  Fetch all saved URL statistics
  Delete Shorten URL by Id
  Delet all saved shorten URL
  ```
+ #API end points URLs (Swagger)
+![alt text](https://github.com/ritika1993/Neueda/blob/master/swagger-rest-urls.png)
 
+```
+ Redirect to original URL from short URL - http://<yourdomain>/url/{key}
+ ```
 ## Tests
 ```
 Unit test cases have been written using JUnit in Spring Boot and the test methods perform the following tasks:
