@@ -42,7 +42,7 @@ public class URLRepositoryConfig  {
 	 * If yes, it will check if it is more than 100 or not
 	 * 		If no, it will set the ID to 100
 	 * 
-	 * Note: 100 
+	 * Note: For this application , id is assumed as 100
 	 */
 	@PostConstruct
 	public void init() {
