@@ -43,23 +43,19 @@ public class ShortenURLServiceImpl implements ShortenURLService {
 	 */
 	@Override
 	public String createShortenURL(String localDomain, String longUrl) {
-
 		LOGGER.info("Shortening {}", longUrl);
 		Long id = urlRepository.incrementID();
 		String uniqueID = encodeToBase62(id);
 		String shortenedURL = localDomain + uniqueID;
-
 		Optional<URLStatistics> urlStatistics = urlRedisRepository.findById(longUrl);
 
 		if (urlStatistics.isPresent()) {
 			LOGGER.info("Shortened URL created : {}", shortenedURL);
 			return urlStatistics.get().getUrl();
-
 		} else {
 			LOGGER.info("Shortened URL existed : {}", shortenedURL);
 			return shortenedURL;
 		}
-
 	}
 
 	/***
@@ -71,7 +67,6 @@ public class ShortenURLServiceImpl implements ShortenURLService {
 	 */
 	@Override	
 	public Optional<URLStatistics> updateShortenURLWhenExists(String origURL) {
-
 		try {
 			Optional<URLStatistics> urlStat = findByOrigURL(origURL);
 			if (urlStat.isPresent()) {
@@ -97,7 +92,6 @@ public class ShortenURLServiceImpl implements ShortenURLService {
 	 */
 	@Override	
 	public Optional<URLStatistics> saveShortenURLWhenNew(String shortenedURL, String longURL) {
-
 		try {
 			URLStatistics urlStatistics = new URLStatistics(shortenedURL, longURL, LocalDateTime.now());
 			urlStatistics.setNoOfRedirects(0);
