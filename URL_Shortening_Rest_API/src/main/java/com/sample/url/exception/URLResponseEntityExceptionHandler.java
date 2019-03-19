@@ -29,8 +29,7 @@ public class URLResponseEntityExceptionHandler extends ResponseEntityExceptionHa
 	 * @return ResponseEntity with a ExceptionResponse message
 	 */
 	@ExceptionHandler(Exception.class)
-	public final ResponseEntity<ExceptionResponse> handleAllExceptions(Exception e, WebRequest we ){
-		
+	public final ResponseEntity<ExceptionResponse> handleAllExceptions(Exception e, WebRequest we ){		
 		ExceptionResponse exceptionResponse = new ExceptionResponse(we.getDescription(false),e.getMessage(),LocalDateTime.now());
 		return new ResponseEntity(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
@@ -41,8 +40,7 @@ public class URLResponseEntityExceptionHandler extends ResponseEntityExceptionHa
 	 * @return ResponseEntity with a ExceptionResponse message
 	 */
 	@ExceptionHandler(URLNotFoundException.class)
-	public final ResponseEntity<ExceptionResponse> handleURLNotFoundException(URLNotFoundException e, WebRequest we ){
-		
+	public final ResponseEntity<ExceptionResponse> handleURLNotFoundException(URLNotFoundException e, WebRequest we ){		
 		ExceptionResponse exceptionResponse = new ExceptionResponse(we.getDescription(false),e.getMessage(),LocalDateTime.now());
 		return new ResponseEntity(exceptionResponse, HttpStatus.NOT_FOUND);
 	}
@@ -53,8 +51,7 @@ public class URLResponseEntityExceptionHandler extends ResponseEntityExceptionHa
 	 * @return ResponseEntity with a ExceptionResponse message
 	 */
 	@ExceptionHandler(UnProcessableEntityException.class)
-	public final ResponseEntity<Object> handleUnProcessableEntityException(UnProcessableEntityException e, WebRequest we ){
-		
+	public final ResponseEntity<Object> handleUnProcessableEntityException(UnProcessableEntityException e, WebRequest we ){		
 		ExceptionResponse exceptionResponse = new ExceptionResponse(we.getDescription(false),e.getMessage(),LocalDateTime.now());
 		return new ResponseEntity(exceptionResponse, HttpStatus.UNPROCESSABLE_ENTITY);
 	}
@@ -65,8 +62,7 @@ public class URLResponseEntityExceptionHandler extends ResponseEntityExceptionHa
 	 * @return ResponseEntity with a ExceptionResponse message
 	 */
 	@ExceptionHandler(JedisException.class)
-	public final ResponseEntity<ExceptionResponse> handleJedisException(JedisException e, WebRequest we ){
-		
+	public final ResponseEntity<ExceptionResponse> handleJedisException(JedisException e, WebRequest we ){		
 		ExceptionResponse exceptionResponse = new ExceptionResponse(we.getDescription(false),e.getMessage(),LocalDateTime.now());
 		return new ResponseEntity(exceptionResponse, HttpStatus.BAD_GATEWAY);
 	}
