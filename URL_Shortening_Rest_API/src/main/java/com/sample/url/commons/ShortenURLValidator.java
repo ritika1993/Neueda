@@ -10,17 +10,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /***
- * This class is to validate the URL for http/https and ensure it to be active
+ * This class is to validate the URL for http/https, blocks the local domain and ensure it to be active (returning 2XX response)
  * 
- * @author Asus
+ * @author Ritika Sao
  *
  */
 public class ShortenURLValidator {
 
 	private static UrlValidator urlValidator;
-
 	private static final String[] SCHEMES = { "http", "https" };
-
 	private static final Logger LOGGER = LoggerFactory.getLogger(ShortenURLValidator.class);
 
 	static {
@@ -39,11 +37,8 @@ public class ShortenURLValidator {
 	 */
 	public static boolean validateURL(String url, String localHost) throws UnknownHostException, IOException {
 		/* block shortening for the localhost:/8086 */
-
 		LOGGER.info("local URL {}", localHost);
-		if (urlValidator.isValid(url) && !url.contains(localHost)) {
-
-			
+		if (urlValidator.isValid(url) && !url.contains(localHost)) {			
 			URL myURL = new URL(url);
 			HttpURLConnection myConnection = (HttpURLConnection) myURL.openConnection();
 			myURL.openConnection();
@@ -52,12 +47,9 @@ public class ShortenURLValidator {
 				LOGGER.info("URL validated ... ");
 				return true;
 			} else {
-
 				return false;
 			}
 		}
-
 		return false;
-
 	}
 }
