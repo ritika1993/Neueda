@@ -5,12 +5,8 @@ package com.sample.url.exception;
  *
  */
 public class URLNotFoundException extends RuntimeException {
-
-
 	
-	public URLNotFoundException(final String message) {
-		
+	public URLNotFoundException(final String message) {		
 		super(message);
-
 	}
 }
