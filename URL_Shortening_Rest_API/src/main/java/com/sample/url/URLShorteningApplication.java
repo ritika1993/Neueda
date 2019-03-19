@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /***
  * This class is the starting point of the application
- * @author Asus
+ * @author Ritika Sao
  *
  */
 @SpringBootApplication()
