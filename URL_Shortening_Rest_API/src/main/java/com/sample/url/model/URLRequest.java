@@ -11,11 +11,10 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel(description = "URL Request")
 public class URLRequest{
 	
-	// URL request
-	@ApiModelProperty(notes = "request URL")
+    // URL request
+    @ApiModelProperty(notes = "request URL")
     private String url;
-
-  
+	
     public URLRequest() {
     }
 
@@ -29,7 +28,5 @@ public class URLRequest{
 
     public void setUrl(String url) {
         this.url = url;
-    }
-	
-	
+    }	
 }
