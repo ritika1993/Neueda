@@ -73,7 +73,7 @@ Swagger screenshots
 
 Postman Screenshots
 1. Redirect to original URL -
-
+![alt text](https://github.com/ritika1993/Neueda/blob/master/redirect-url-postman.png)
 
 Include logo/demo screenshot etc.
 
@@ -87,29 +87,17 @@ Include logo/demo screenshot etc.
  Delet all saved shorten URL
  ```
 
-##Few Code Example
-```
- Screenshot for logic code snippet and explanation
- ```
-
- ```
- Screenshot for hateoas code snippet and explanation
- ```
-
-```
- Screenshot for swagger ui code snippet and explanation
- ```
- 
 ## Tests
 ```
-Unit test cases have been wriiten using JUnit in Spring Boot and the test methods perform the following tasks:
-Test for shortening URL and then retreiving the orignal URL based on the shortened URl and than matching them both.
-Testing for statistics check(number of request, number of redirects) of the shortened URL>
+Unit test cases have been written using JUnit in Spring Boot and the test methods perform the following tasks:
+1. Test for shortening URL and then retreiving the orignal URL based on the shortened URl and than matching them both.
+2. Test for statistics check(number of request, number of redirects) of the shortened URL
+3. Test for deletion of URLs from the database
 ```
 
 ## Contribute
-A fron-end can eassily be made either using Thymleaf in the same application doing AJAX call to the exposed Rest end-points,
-or a seperate fromt-end application can be made which can consume the given rest end points.
+A fron-end can easily be made either using Thymleaf in the same application doing AJAX call to the exposed Rest end-points,
+or a seperate front-end application can be made which can consume the given rest end points.
 
 
 ## License
