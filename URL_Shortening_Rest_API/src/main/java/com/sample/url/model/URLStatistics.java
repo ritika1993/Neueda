@@ -10,7 +10,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 /***
  * DTO for Object Relation Mapping with Redis Inmemory Database
- * @author Asus
+ * @author Ritika Sao
  *
  */
 @RedisHash("URL")
@@ -40,11 +40,9 @@ public class URLStatistics extends ResourceSupport {
 
 	
 	public URLStatistics(String url, String origURL, LocalDateTime lastAccessed) {
-
 		this.url = url;
 		this.origURL = origURL;
 		this.lastAccessed = lastAccessed;
-
 	}
 
 	public String getUrl() {
