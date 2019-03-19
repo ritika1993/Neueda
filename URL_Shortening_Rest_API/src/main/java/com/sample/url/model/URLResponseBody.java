@@ -12,7 +12,7 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel(description = "URL Response with short URL and detailed message")
 public class URLResponseBody extends ResourceSupport {
 
-	// Message (Sucess/Failure/Error)
+	// Message for success, failure and error scenario
 	@ApiModelProperty(notes = " response message")
 	private String message;	
 	// shortened URL as response
@@ -30,7 +30,5 @@ public class URLResponseBody extends ResourceSupport {
 	}
 	public void setShortURLResponse(String shortURLResponse) {
 		this.shortURLResponse = shortURLResponse;
-	}
-	
-	
+	}	
 }
