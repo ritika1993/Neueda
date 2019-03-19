@@ -61,7 +61,7 @@ public class ShortenURLController implements URLShorteningAPI {
 
 	@Value("${local.domain}")
 	private String localDomain;
-
+	
 	private static final Logger LOGGER = LoggerFactory.getLogger(ShortenURLController.class);
 
 	private final ShortenURLServiceImpl urlConverterService;
@@ -88,7 +88,6 @@ public class ShortenURLController implements URLShorteningAPI {
 	@GetMapping(value = "/{id}")
 	public RedirectView redirectUrl(@PathVariable String id, HttpServletRequest request, HttpServletResponse response)
 			throws IOException, URISyntaxException, Exception {
-
 		String shortenURL = localDomain + id;
 		LOGGER.info("Received shortened url to redirect: " + shortenURL);
 		URLStatistics urlStat = urlConverterService.findByShortURL(shortenURL);
@@ -98,11 +97,9 @@ public class ShortenURLController implements URLShorteningAPI {
 			RedirectView redirectView = new RedirectView();
 			redirectView.setUrl(urlStat.getOrigURL());
 			return redirectView;
-
 		} else {
 			throw new URLNotFoundException("Couldn't redirect to the original URL.. short URL not valid");
 		}
-
 	}
 
 	/***
@@ -196,7 +193,7 @@ public class ShortenURLController implements URLShorteningAPI {
 	 */
 	@ApiOperation(value = "Fetch Statistics of a shortened URL by ID", response = URLStatistics.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully found statistics for provided URL"),
-			@ApiResponse(code = 404, message = "Couldn't find shortened URL") })
+				@ApiResponse(code = 404, message = "Couldn't find shortened URL") })
 	@GetMapping(value = "/statistics/{id}", produces = { "application/hal+json" })
 	public ResponseEntity<URLStatistics> getURLStatistics(@PathVariable String id) {
 
@@ -209,11 +206,9 @@ public class ShortenURLController implements URLShorteningAPI {
 			stat.add(linkAll);
 			ResponseEntity<URLStatistics> result = new ResponseEntity<URLStatistics>(stat, HttpStatus.OK);
 			return result;
-
 		}
 		LOGGER.error("URLStatistics returned as Null");
 		throw new URLNotFoundException("Short URL entered doesn't exist");
-
 	}
 
 	/***
@@ -225,12 +220,10 @@ public class ShortenURLController implements URLShorteningAPI {
 	 */
 	@ApiOperation(value = "Fetch all URLs statistics", response = URLStatistics.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully found statistics for all URLs"),
-			@ApiResponse(code = 404, message = "Couldn't find any shortened URL") })
+				@ApiResponse(code = 404, message = "Couldn't find any shortened URL") })
 	@GetMapping(value = "/allshortenURLs", produces = { "application/hal+json" })
 	public Resources<URLStatistics> getAllURLStatistics() {
-
 		List<URLStatistics> stat = urlConverterService.getAllURLStatistics();
-
 		if (stat.size() != 0) {
 			stat.forEach(url -> {
 				String uniqueID = url.getUrl().substring(url.getUrl().lastIndexOf('/') + 1);
@@ -255,7 +248,7 @@ public class ShortenURLController implements URLShorteningAPI {
 	 */
 	@ApiOperation(value = "Delete Statistics of a shortened URL by ID", response = URLResponseBody.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully deleted statistics for provided URL"),
-			@ApiResponse(code = 404, message = "Couldn't delete shortened URL") })
+				@ApiResponse(code = 404, message = "Couldn't delete shortened URL") })
 	@DeleteMapping(value = "/deleteByURL", produces = "application/json")
 	public ResponseEntity<URLResponseBody> deleteURLStatistics(@RequestBody @Valid final URLRequest uRLRequest)
 			throws Exception {
@@ -272,7 +265,6 @@ public class ShortenURLController implements URLShorteningAPI {
 			return new ResponseEntity<URLResponseBody>(urlResp, HttpStatus.OK);
 		}
 		throw new URLNotFoundException("No such shortened URL found to be deleted ");
-
 	}
 
 	/***
@@ -285,7 +277,7 @@ public class ShortenURLController implements URLShorteningAPI {
 	 */
 	@ApiOperation(value = "Delete all shortened URLs", response = URLResponseBody.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully deleted all URLs"),
-			@ApiResponse(code = 404, message = "Couldn't find any shortened URL") })
+				@ApiResponse(code = 404, message = "Couldn't find any shortened URL") })
 	@DeleteMapping(value = "/deleteAll", produces = "application/json")
 	public ResponseEntity<URLResponseBody> deleteURLStatistics() throws Exception {
 		LOGGER.info("Inside delete All URLs");
@@ -296,7 +288,6 @@ public class ShortenURLController implements URLShorteningAPI {
 			urlResp.setShortURLResponse("Deleted All URLs");
 			return new ResponseEntity<URLResponseBody>(urlResp, HttpStatus.OK);
 		}
-
 		throw new URLNotFoundException("No shortened URLs exist");
 	}
 }
