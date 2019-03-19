@@ -85,9 +85,11 @@ public class URLShortenApplicationTest {
 	}
 
 	/***
-	 * Test Method to perform: 1. URL shortening on the list of sites 2. Saving to
-	 * the database 3. Verifying the URL provided for shortening with the original
-	 * URL
+	 * Test Method to perform: 
+	 * 1. URL shortening on the list of sites 
+	 * 2. Saving to the database
+	 * 3. Verifying the URL provided for shortening with the original URL
+	 * 
 	 * 
 	 * @throws Exception
 	 */
@@ -95,7 +97,6 @@ public class URLShortenApplicationTest {
 	public void testForURLShortening() throws Exception {
 		LOGGER.info("Inside Test 1 ========================================================");
 		for (String url : URL_1) {
-
 			String shortURL = service.createShortenURL(LOCAL_DOMAIN, url);
 			Assert.assertNotNull(shortURL);
 			service.saveShortenURLWhenNew(shortURL, url);
@@ -138,7 +139,6 @@ public class URLShortenApplicationTest {
 				LOGGER.info("After redirect URL {}", statRedirect.get());
 				Assert.assertEquals(statRedirect.get().getNoOfRedirects(), noOfRedirects + 1);
 			} else {
-
 				Assert.fail("No URL found for Redirection Test");
 			}
 		}
@@ -146,26 +146,27 @@ public class URLShortenApplicationTest {
 	}
 
 	/***
-	 * Method to delete all the URLs shortened for the test from the database
+	 * Test Method to delete a list of URLs from the database and checks if they are deleted or not
 	 */
 	@Test
-	public void testDeleteURLs() {
+	public void testDeleteURLs() throws Exception{
 		
 		LOGGER.info("Inside Test 3 ========================================================");
 
-		for (String url : URL_3) {
-			
+		for (String url : URL_3) {			
 			String shortURL = service.createShortenURL(LOCAL_DOMAIN, url);
 			Assert.assertNotNull(shortURL);
 			Optional<URLStatistics> statBeforeSaved = service.saveShortenURLWhenNew(shortURL, url);
 			LOGGER.info("After saved URL {}", statBeforeSaved.get());
 			service.deleteStatisticsByURL(url);
 			Optional<URLStatistics> statRedirect = service.findByOrigURL(url);
-		    Assert.assertTrue("Deletion Test for URL "+ url +" passed", !statRedirect.isPresent());
-			
+		    	Assert.assertTrue("Deletion Test for URL "+ url +" passed", !statRedirect.isPresent());			
 		}
 		LOGGER.info("End Test 3 ========================================================");
 	}
+	/***
+	 * Method to delete all the URLs shortened for the test from the database
+	 */
 	@AfterClass
 	public static void afterTest() {
 		LOGGER.info("After Test  ========================================================");
