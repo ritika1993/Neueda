@@ -62,7 +62,8 @@ public class URLShortenApplicationTest {
 	@Autowired
 	private URLRedisRepository urlRedis;
 	/***
-	 * Domain Name
+	 * Domain Name 
+	 * Note: Defined the local domain as constant (can be fetched by properties file)
 	 */
 	private static final String LOCAL_DOMAIN = "https://localhost:8086/";
 
