@@ -4,8 +4,6 @@ import static com.sample.url.commons.ShortenURLValidator.validateURL;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
 
@@ -73,21 +71,19 @@ public class ShortenURLController implements URLShorteningAPI {
 
 	/***
 	 * Rest End point to redirect to the original URL URI: Shortened Link :
-	 * https://localhost:8086/url/bqw
+	 * https://<your domain>/url/bqw
 	 * 
 	 * @param id       (unique string id generated for the shortened link) (bqw)
 	 * @param request
 	 * @param response
 	 * @return RedirectView to the original URL
-	 * @throws IOException
-	 * @throws URISyntaxException
 	 * @throws Exception
 	 */
 
 	@ApiIgnore // Swagger doesn't support Redirecting to a URL hence not exposing it there
 	@GetMapping(value = "/{id}")
 	public RedirectView redirectUrl(@PathVariable String id, HttpServletRequest request, HttpServletResponse response)
-			throws IOException, URISyntaxException, Exception {
+			throws Exception {
 		String shortenURL = localDomain + id;
 		LOGGER.info("Received shortened url to redirect: " + shortenURL);
 		URLStatistics urlStat = urlConverterService.findByShortURL(shortenURL);
@@ -104,7 +100,7 @@ public class ShortenURLController implements URLShorteningAPI {
 
 	/***
 	 * Rest End point to shorten the URL provided URI:
-	 * https://localhost:8086/url/shorten
+	 * https://<your domain>/url/shorten
 	 * 
 	 * @param uRLRequest (URL in json format)
 	 * @return Response Entity with the URL ResponseBody along with links to a
@@ -147,24 +143,20 @@ public class ShortenURLController implements URLShorteningAPI {
 							Link linkToStatistics = linkTo(methodOn(this.getClass()).getURLStatistics(uniqueID))
 									.withRel("statistics");
 							urlResp.add(linkToStatistics);
-
 						} else {
 							throw new JedisException("Shortened URL failed to save ");
 						}
-
 					} else {
 						LOGGER.error("URL not shortened");
 						throw new URLNotFoundException("URL not shortened !!");
 					}
 				} else {
-
 					urlConverterService.updateShortenURLWhenExists(longUrl);
 					urlResp.setShortURLResponse(urlStat.get().getUrl());
 					uniqueID = urlStat.get().getUrl().substring(urlStat.get().getUrl().lastIndexOf('/') + 1);
 					Link linkToStatistics = linkTo(methodOn(this.getClass()).getURLStatistics(uniqueID))
 							.withRel("statistics");
 					urlResp.add(linkToStatistics);
-
 				}
 				urlResp.setMessage("Success");
 				Link linkAll = linkTo(methodOn(this.getClass()).getAllURLStatistics()).withRel("allShortenURLs");
@@ -175,16 +167,14 @@ public class ShortenURLController implements URLShorteningAPI {
 			}
 			LOGGER.error("Invalid URL");
 			throw new UnProcessableEntityException("URL is either invalid or not responsive");
-
 		}
 		LOGGER.error("Blank URL");
 		throw new UnProcessableEntityException("Please provide a URL.. URL found Blank");
-
 	}
 
 	/***
 	 * Rest End point to get the statistics for a particular shortened URL by
-	 * passing the unique id URI: https://localhost:8086/url/statistics/bqw
+	 * passing the unique id URI: https://<your domain>/url/statistics/bqw
 	 * 
 	 * @param id (bqw)
 	 * @return Response Entity with an instance of URLStatistics with all the
@@ -213,7 +203,7 @@ public class ShortenURLController implements URLShorteningAPI {
 
 	/***
 	 * Rest End point to return all the shortened URLs URI:
-	 * https://localhost:8086/url/allshortenURLs
+	 * https://<your domain>/url/allshortenURLs
 	 * 
 	 * @return Resources with List of URLStatistics along with link to individual
 	 *         statistics of a URL
@@ -239,7 +229,7 @@ public class ShortenURLController implements URLShorteningAPI {
 
 	/***
 	 * Rest End point to delete a particular shortened URL URI:
-	 * https://localhost:8086/url/deleteByURL
+	 * https://<your domain>/url/deleteByURL
 	 * 
 	 * @param uRLRequest
 	 * @return ResponseEntity with URLResponseBody displaying response of the delete
@@ -254,7 +244,6 @@ public class ShortenURLController implements URLShorteningAPI {
 			throws Exception {
 		LOGGER.info("Inside delete URL for {}: ", uRLRequest.getUrl());
 		String longUrl = uRLRequest.getUrl();
-
 		int result = urlConverterService.deleteStatisticsByURL(longUrl);
 		if (result == 0) {
 			URLResponseBody urlResp = new URLResponseBody();
@@ -269,7 +258,7 @@ public class ShortenURLController implements URLShorteningAPI {
 
 	/***
 	 * Rest End point to delete all the shortened URLs URI:
-	 * https://localhost:8086/url/deleteAll
+	 * https://<your domain>/url/deleteAll
 	 * 
 	 * @return ResponseEntity to return a URLResponseBody with response to deletion
 	 *         of all URLs
